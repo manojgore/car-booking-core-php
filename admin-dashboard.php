@@ -101,7 +101,7 @@ if ($conn->connect_error) {
                  <li class="nav-item">
                     <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
                         Messages
-                    </a>
+                    </a> 
                 </li>
 
                 <li class="nav-item">
