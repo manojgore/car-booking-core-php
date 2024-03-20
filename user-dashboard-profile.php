@@ -33,10 +33,10 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from techydevs.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:28 GMT -->
+<!-- Mirrored from Psyber Inc.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:28 GMT -->
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="author" content="TechyDevs">
+    <meta name="author" content="Psyber Inc">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trizen - Travel Booking HTML Template</title>
@@ -464,8 +464,8 @@ $conn->close();
                     <div class="col-lg-7">
                         <div class="copy-right padding-top-30px">
                             <p class="copy__desc">
-                                &copy; Copyright Trizen 2020. Made with
-                                <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
+                                &copy; 2024 © All Rights Reserved. Made with
+                                <span class="la la-heart"></span> by <a href="https://themeforest.net/user/Psyber Inc/portfolio">Psyber Inc</a>
                             </p>
                         </div><!-- end copy-right -->
                     </div><!-- end col-lg-7 -->
@@ -510,5 +510,5 @@ $conn->close();
 <script src="js/main.js"></script>
 </body>
 
-<!-- Mirrored from techydevs.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:29 GMT -->
+<!-- Mirrored from Psyber Inc.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:29 GMT -->
 </html>
