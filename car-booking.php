@@ -49,7 +49,7 @@ session_start();
             START HEADER AREA
 ================================= -->
 <header class="header-area">
-    <div class="header-top-bar padding-right-100px padding-left-100px">
+    <div class="header-top-bar padding-right-100px padding-left-100px"> 
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-lg-6">
