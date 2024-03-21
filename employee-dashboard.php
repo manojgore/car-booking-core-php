@@ -7,7 +7,7 @@ if (!isset($_SESSION['employee_id'])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "rentaly";
+$dbname = "rentaly"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
