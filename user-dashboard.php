@@ -27,7 +27,7 @@ if ($conn->connect_error) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trizen - Travel Booking HTML Template</title>
     <!-- Favicon -->
-    <link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="images/favicon.png"> 
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
