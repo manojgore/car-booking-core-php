@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 $email = $_SESSION['email'];
 
 // Fetch user data from the database
-$sql = "SELECT * FROM users WHERE email = '$email'";
+$sql = "SELECT * FROM users WHERE email = '$email'"; 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
