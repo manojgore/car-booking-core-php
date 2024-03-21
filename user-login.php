@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $sql->bind_param("s", $email);
     $sql->execute();
-    $result = $sql->get_result();
+    $result = $sql->get_result(); 
 
     // Check if the user exists
     if ($result->num_rows > 0) {
