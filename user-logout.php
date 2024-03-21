@@ -3,7 +3,7 @@
 session_start();
 
 // Unset session variables
-unset($_SESSION['user_id']);
+unset($_SESSION['user_id']); 
 unset($_SESSION['username']);
 unset($_SESSION['email']);
 
