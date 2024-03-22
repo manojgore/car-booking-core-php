@@ -67,7 +67,7 @@ if (!isset($_SESSION['corporate_id'])) {
                     <li class="nav-item">
                         <a class="nav-link active" id="notification-tab" data-toggle="tab" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
                             Notifications
-                        </a>
+                        </a> 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
