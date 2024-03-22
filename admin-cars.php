@@ -1,3 +1,68 @@
+<?php
+
+// Start or resume a session
+session_start();
+if (isset($_SESSION['admin_id'])) {
+    header("Location: admin-dashboard.php");
+    exit(); // Stop further execution
+}
+// Database configuration
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "rentaly";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the form is submitted using POST method
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve values from the form
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+    // Query the database to check the user
+    $sql = $conn->prepare("SELECT * FROM admin WHERE email = ?");
+    $sql->bind_param("s", $email);
+    $sql->execute();
+    $result = $sql->get_result();
+
+    // Check if the user exists
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+
+        // Verify the password (you may need to adjust this based on your hashing method)
+        if (($password==$user['password'])) {
+            // Password is correct, set user data in session
+            $_SESSION['admin_id'] = $user['admin_id'];
+            $_SESSION['admin_username'] = $user['username'];
+            $_SESSION['admin_email']=$user['email'];
+
+            // Redirect to the user's dashboard or another page
+            header("Location: admin-dashboard.php");
+            exit();
+        } else {
+            // Password is incorrect
+            echo "Invalid password";
+        }
+    } else {
+        // User not found
+        echo "User not found";
+    }
+
+    // Close the statement
+    $sql->close();
+}
+
+// Close the database connection
+$conn->close();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +72,7 @@
     <meta name="author" content="Psyber Inc">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trizen - Travel Booking HTML Template</title>
+    <title>Malvin Cabs - Rent a Car</title>
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png">
 
@@ -577,7 +642,7 @@
   // JavaScript code to handle button click event
   document.getElementById("addCustomerBtn").addEventListener("click", function() {
     // Redirect to the new page
-    window.location.href = "add_car.html"; // Replace "new_car_page.php" with the actual URL of the new page
+    window.location.href = "add-new-car.php"; // Replace "new_car_page.php" with the actual URL of the new page
   });
 </script>
 

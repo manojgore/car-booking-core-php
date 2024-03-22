@@ -25,7 +25,7 @@ if ($conn->connect_error) {
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trizen - Travel Booking HTML Template</title>
+    <title>Malvin Cabs - Rent a Car</title>
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png">
 
@@ -155,7 +155,7 @@ if ($conn->connect_error) {
                             </div>
                         </a>
                         <div class="list-group drop-reveal-list user-drop-reveal-list">
-                            <a href="user-dashboard-profile.php" class="list-group-item list-group-item-action">
+                            <a href="employee-dashboard-profile.php" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
@@ -208,7 +208,7 @@ if ($conn->connect_error) {
         <div class="sidebar-menu-wrap">
     <ul class="sidebar-menu list-items">
         <li class="page-active"><a href="user-dashboard.html"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-        <li><a href="user-dashboard-profile.php"><i class="la la-user mr-2 text-color-2"></i>My Profile</a></li>
+        <li><a href="employee-dashboard-profile.php"><i class="la la-user mr-2 text-color-2"></i>My Profile</a></li>
         <li><a href="employee-logout.php"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
         <!-- New list item with the "Book Now" button -->
         <li><a href="index.php" class="book-now-btn"><i class="la la-book mr-2 text-color-3"></i>Book Now</a></li>
@@ -259,14 +259,14 @@ if ($conn->connect_error) {
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
                                                 <span class="font-size-14 font-weight-bold"><?php echo $_SESSION['employee_username']; ?></span>
-                                            </div>
+                                            </div> 
                                         </a>
                                         <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
                                             <div class="dropdown-item drop-reveal-header user-reveal-header">
                                                 <h6 class="title text-uppercase">Welcome!</h6>
                                             </div>
                                             <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="user-dashboard-profile.php" class="list-group-item list-group-item-action">
+                                                <a href="employee-dashboard-profile.php" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>

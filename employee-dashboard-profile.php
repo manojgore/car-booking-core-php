@@ -1,7 +1,39 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: employee-login.php");
+    exit(); // Stop further execution
+}
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "rentaly";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Assuming you have a session with user email information
+$email = $_SESSION['email'];
+
+// Fetch user data from the database
+$sql = "SELECT * FROM employee WHERE email = '$email'"; 
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $userData = $result->fetch_assoc();
+} else {
+    // Handle the case where the user is not found
+    $userData = array();
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from Psyber Inc.com/demos/trizen/html/admin-dashboard-orders-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:11:00 GMT -->
+<!-- Mirrored from Psyber Inc.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:28 GMT -->
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="Psyber Inc">
@@ -54,12 +86,6 @@
                         Notifications
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
-                        Messages
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="true">
                         Account
@@ -132,81 +158,17 @@
                     </div><!-- end notification-item -->
                 </div>
             </div>
-            <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">
-                <div class="user-sidebar-item">
-                    <div class="notification-item">
-                        <div class="list-group drop-reveal-list">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="avatar flex-shrink-0 mr-3">
-                                        <img src="images/team8.jpg" alt="">
-                                    </div>
-                                    <div class="msg-content w-100">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h3 class="title pb-1">Steve Wornder</h3>
-                                            <span class="msg-text">3 min ago</span>
-                                        </div>
-                                        <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="avatar flex-shrink-0 mr-3">
-                                        <img src="images/team9.jpg" alt="">
-                                    </div>
-                                    <div class="msg-content w-100">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h3 class="title pb-1">Marc Twain</h3>
-                                            <span class="msg-text">1 hrs ago</span>
-                                        </div>
-                                        <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="avatar flex-shrink-0 mr-3">
-                                        <img src="images/team10.jpg" alt="">
-                                    </div>
-                                    <div class="msg-content w-100">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h3 class="title pb-1">Enzo Ferrari</h3>
-                                            <span class="msg-text">2 hrs ago</span>
-                                        </div>
-                                        <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="msg-body d-flex align-items-center">
-                                    <div class="avatar flex-shrink-0 mr-3">
-                                        <img src="images/team11.jpg" alt="">
-                                    </div>
-                                    <div class="msg-content w-100">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h3 class="title pb-1">Lucas Swing</h3>
-                                            <span class="msg-text">3 hrs ago</span>
-                                        </div>
-                                        <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                    </div>
-                                </div><!-- end msg-body -->
-                            </a>
-                        </div>
-                    </div><!-- end notification-item -->
-                </div>
-            </div>
             <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
                 <div class="user-action-wrap user-sidebar-panel">
                     <div class="notification-item">
-                        <a href="user-dashboard-profile.html" class="dropdown-item">
+                        <a href="user-dashboard-profile.php" class="dropdown-item">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
                                 <span class="font-size-14 font-weight-bold">Ali Tufan</span>
                             </div>
                         </a>
                         <div class="list-group drop-reveal-list user-drop-reveal-list">
-                            <a href="user-dashboard-profile.html" class="list-group-item list-group-item-action">
+                            <a href="user-dashboard-profile.php" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
@@ -227,7 +189,7 @@
                                     </div>
                                 </div><!-- end msg-body -->
                             </a>
-                            <a href="user-dashboard-settings.html" class="list-group-item list-group-item-action">
+                            <a href="user-dashboard-settings.php" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
@@ -235,7 +197,7 @@
                                 </div><!-- end msg-body -->
                             </a>
                             <div class="section-block"></div>
-                            <a href="index.html" class="list-group-item list-group-item-action">
+                            <a href="logout.php" class="list-group-item list-group-item-action">
                                 <div class="msg-body">
                                     <div class="msg-content">
                                         <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
@@ -256,7 +218,7 @@
 <!-- ================================
        START DASHBOARD NAV
 ================================= -->
-<div class="sidebar-nav sidebar--nav">
+<div class="sidebar-nav">
     <div class="sidebar-nav-body">
         <div class="side-menu-close">
             <i class="la la-times"></i>
@@ -264,66 +226,25 @@
         <div class="author-content">
             <div class="d-flex align-items-center">
                 <div class="author-img avatar-sm">
-                    <img src="images/team9.jpg" alt="testimonial image">
+                    <img src="images/team8.jpg" alt="testimonial image">
                 </div>
                 <div class="author-bio">
-                    <h4 class="author__title">Royel travel agency</h4>
-                    <span class="author__meta">Welcome to Admin Panel</span>
+                <h4 class=" font-weight-bold"><?php echo $_SESSION['username']; ?></h4>
+
+                    <span class="author__meta">Member Since May 2017</span>
                 </div>
             </div>
         </div>
         <div class="sidebar-menu-wrap">
-            <ul class="sidebar-menu toggle-menu list-items">
-                <li><a href="admin-dashboard.html"><i class="la la-dashboard mr-2 text-color"></i>Dashboard</a></li>
-                <li><a href="admin-dashboard-booking.html"><i class="la la-shopping-cart mr-2 text-color-2"></i>Booking</a></li>
-                <li class="page-active">
-                    <span class="side-menu-icon toggle-menu-icon">
-                        <i class="la la-angle-down"></i>
-                    </span>
-                    <a href="admin-dashboard-orders.html"><i class="la la-list mr-2"></i>Orders</a>
-                    <ul class="toggle-drop-menu">
-                        <li><a href="admin-dashboard-orders-details.html">Order Details</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="side-menu-icon toggle-menu-icon">
-                        <i class="la la-angle-down"></i>
-                    </span>
-                    <a href="admin-dashboard-travellers.html"><i class="la la-users mr-2 text-color-3"></i>Travellers</a>
-                    <ul class="toggle-drop-menu">
-                        <li><a href="admin-dashboard-traveler-detail.html">Traveller Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="admin-dashboard-visa.html"><i class="la la-plane mr-2 text-color-4"></i>Visa Application</a></li>
-                <li><a href="admin-dashboard-reviews.html"><i class="la la-star mr-2 text-color-5"></i>Reviews</a></li>
-                <li><a href="admin-dashboard-wishlist.html"><i class="la la-heart mr-2 text-color-6"></i>Wishlist</a></li>
-                <li><a href="admin-dashboard-travel-agents.html"><i class="la la-text-width mr-2 text-color-7"></i>Travel Agents</a></li>
-                <li>
-                    <span class="side-menu-icon toggle-menu-icon">
-                        <i class="la la-angle-down"></i>
-                    </span>
-                    <a href="#"><i class="la la-area-chart mr-2 text-color-8"></i>Finance</a>
-                    <ul class="toggle-drop-menu">
-                        <li><a href="admin-invoice.html">Invoice</a></li>
-                        <li><a href="admin-payments.html">Payments</a></li>
-                        <li><a href="admin-currency-list.html">Currency List</a></li>
-                        <li><a href="admin-dashboard-subscribers.html">Subscribers</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="side-menu-icon toggle-menu-icon">
-                        <i class="la la-angle-down"></i>
-                    </span>
-                    <a href="#"><i class="la la-map-signs mr-2 text-color-9"></i>Locations</a>
-                    <ul class="toggle-drop-menu">
-                        <li><a href="admin-countries.html">Countries</a></li>
-                        <li><a href="admin-airlines.html">Airlines</a></li>
-                    </ul>
-                </li>
-                <li><a href="admin-dashboard-settings.html"><i class="la la-cog mr-2 text-color-10"></i>Settings</a></li>
-                <li><a href="index.html"><i class="la la-power-off mr-2 text-color-11"></i>Logout</a></li>
-            </ul>
-        </div><!-- end sidebar-menu-wrap -->
+    <ul class="sidebar-menu list-items">
+        <li ><a href="user-dashboard.html"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+        <li class="page-active"><a href="user-dashboard-profile.php"><i class="la la-user mr-2 text-color-2"></i>My Profile</a></li>
+        <li><a href="user-logout.php"><i class="la la-power-off mr-2 text-color-6"></i>Logout</a></li>
+        <!-- New list item with the "Book Now" button -->
+        <li><a href="index.php" class="book-now-btn"><i class="la la-book mr-2 text-color-3"></i>Book Now</a></li>
+    </ul>
+</div><!-- end sidebar-menu-wrap -->
+
     </div>
 </div><!-- end sidebar-nav -->
 <!-- ================================
@@ -334,7 +255,7 @@
     START DASHBOARD AREA
 ================================= -->
 <section class="dashboard-area">
-    <div class="dashboard-nav dashboard--nav">
+    <div class="dashboard-nav">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
@@ -413,84 +334,12 @@
                                         </div><!-- end dropdown-menu -->
                                     </div>
                                 </div><!-- end notification-item -->
-                                <div class="notification-item mr-2">
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle drop-reveal-toggle-icon" id="messageDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="la la-envelope"></i>
-                                            <span class="noti-count">4</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-reveal dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-header drop-reveal-header">
-                                                <h6 class="title">You have <strong class="text-black">4</strong> messages</h6>
-                                            </div>
-                                            <div class="list-group drop-reveal-list">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="avatar flex-shrink-0 mr-3">
-                                                            <img src="images/team8.jpg" alt="">
-                                                        </div>
-                                                        <div class="msg-content w-100">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <h3 class="title pb-1">Steve Wornder</h3>
-                                                                <span class="msg-text">3 min ago</span>
-                                                            </div>
-                                                            <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="avatar flex-shrink-0 mr-3">
-                                                            <img src="images/team9.jpg" alt="">
-                                                        </div>
-                                                        <div class="msg-content w-100">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <h3 class="title pb-1">Marc Twain</h3>
-                                                                <span class="msg-text">1 hrs ago</span>
-                                                            </div>
-                                                            <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="avatar flex-shrink-0 mr-3">
-                                                            <img src="images/team10.jpg" alt="">
-                                                        </div>
-                                                        <div class="msg-content w-100">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <h3 class="title pb-1">Enzo Ferrari</h3>
-                                                                <span class="msg-text">2 hrs ago</span>
-                                                            </div>
-                                                            <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="msg-body d-flex align-items-center">
-                                                        <div class="avatar flex-shrink-0 mr-3">
-                                                            <img src="images/team11.jpg" alt="">
-                                                        </div>
-                                                        <div class="msg-content w-100">
-                                                            <div class="d-flex align-items-center justify-content-between">
-                                                                <h3 class="title pb-1">Lucas Swing</h3>
-                                                                <span class="msg-text">3 hrs ago</span>
-                                                            </div>
-                                                            <p class="msg-text">Ancillae delectus necessitatibus no eam</p>
-                                                        </div>
-                                                    </div><!-- end msg-body -->
-                                                </a>
-                                            </div>
-                                            <a href="#" class="dropdown-item drop-reveal-btn text-center">View all</a>
-                                        </div><!-- end dropdown-menu -->
-                                    </div>
-                                </div><!-- end notification-item -->
                                 <div class="notification-item">
                                     <div class="dropdown">
                                         <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                <span class="font-size-14 font-weight-bold">Royel Admin</span>
+                                                <span class="font-size-14 font-weight-bold">Ali Tufan</span>
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
@@ -498,28 +347,28 @@
                                                 <h6 class="title text-uppercase">Welcome!</h6>
                                             </div>
                                             <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                <a href="admin-dashboard-settings.html" class="list-group-item list-group-item-action">
+                                                <a href="user-dashboard-profile.php" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-user mr-2"></i> Edit Profile</h3>
+                                                            <h3 class="title"><i class="la la-user mr-2"></i>My Profile</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="admin-dashboard-orders.html" class="list-group-item list-group-item-action">
+                                                <a href="user-dashboard-booking.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>Orders</h3>
+                                                            <h3 class="title"><i class="la la-shopping-cart mr-2"></i>My Booking</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
+                                                <a href="user-dashboard-reviews.html" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
-                                                            <h3 class="title"><i class="la la-bell mr-2"></i>Messages</h3>
+                                                            <h3 class="title"><i class="la la-heart mr-2"></i>My Reviews</h3>
                                                         </div>
                                                     </div><!-- end msg-body -->
                                                 </a>
-                                                <a href="admin-dashboard-settings.html" class="list-group-item list-group-item-action">
+                                                <a href="user-dashboard-settings.php" class="list-group-item list-group-item-action">
                                                     <div class="msg-body">
                                                         <div class="msg-content">
                                                             <h3 class="title"><i class="la la-gear mr-2"></i>Settings</h3>
@@ -546,13 +395,13 @@
         </div><!-- end container-fluid -->
     </div><!-- end dashboard-nav -->
     <div class="dashboard-content-wrap">
-        <div class="dashboard-bread dashboard--bread dashboard-bread-2">
+        <div class="dashboard-bread dashboard--bread">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="breadcrumb-content">
                             <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white">Order Details</h2>
+                                <h2 class="sec__title font-size-30 text-white">My Profile</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
@@ -561,7 +410,7 @@
                             <ul class="list-items">
                                 <li><a href="index.html" class="text-white">Home</a></li>
                                 <li>Dashboard</li>
-                                <li>Order Details</li>
+                                <li>My Profile</li>
                             </ul>
                         </div><!-- end breadcrumb-list -->
                     </div><!-- end col-lg-6 -->
@@ -573,36 +422,44 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-box">
-                            <div class="form-title-wrap">
-                                <h3 class="title">Order Detail Lists</h3>
+                            <div class="form-title-wrap border-bottom-0 pb-0">
+                                <h3 class="title">Profile Information</h3>
                             </div>
                             <div class="form-content">
-                                <ul class="list-items list-items-2 list-items-flush">
-                                    <li><span>Order ID#</span>11541689164</li>
-                                    <li><span>Package Ordered:</span>Hotel Malte – Astotel</li>
-                                    <li><span>Package Duration:</span> 12 Jun 2020</li>
-                                    <li><span>Customer Name:</span> David Martin</li>
-                                    <li><span>Customer Email:</span> davidmarting@gmail.com</li>
-                                    <li><span>Customer Phone:</span> + 00 222 44 5678</li>
-                                    <li><span>Customer Address:</span> PO Box CT16122 Collins Street West, Victoria 8007,Australia.</li>
-                                    <li><span>Customer City:</span> Sydney</li>
-                                    <li><span>Customer Postal Code:</span> 3030</li>
-                                    <li><span>Total Adults:</span> 2</li>
-                                    <li><span>Total Child:</span> 2</li>
-                                    <li><span>Total Cost:</span> $140</li>
-                                    <li><span>Booking Date:</span>2020-11-08 14:59:27</li>
-                                    <li><span>Payment Method:</span> Stripe</li>
-                                    <li><span>Stripe Charge ID:</span>ch_1DUEyfLYzRkN5IL2UwTGTf3B</li>
-                                    <li><span>Stripe Transaction ID:</span>txn_1DUEyfLYzRkN5IL2CC99RSbu</li>
-                                </ul>
+                                <div class="table-form table-responsive">
+                                <table class="table">
+    <tbody>
+        <tr>
+            <td class="pl-0">
+                <div class="table-content">
+                    <h3 class="title font-weight-medium">Username</h3>
+                </div>
+            </td>
+            <td>:</td>
+            <td><?php echo isset($userData['username']) ? $userData['username'] : ''; ?></td>
+        </tr>
+
+        <tr>
+            <td class="pl-0">
+                <div class="table-content">
+                    <h3 class="title font-weight-medium">Email Address</h3>
+                </div>
+            </td>
+            <td>:</td>
+            <td><?php echo isset($userData['email']) ? $userData['email'] : ''; ?></td>
+        </tr>
+    </tbody>
+</table>
+                                </div>
+                                <div class="section-block"></div>
                                 <div class="btn-box mt-4">
-                                    <a href="#" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#modalPopup"><i class="la la-envelope mr-1"></i>Contact Customer</a>
+                                    <a href="user-dashboard-settings.php" class="theme-btn">Edit Profile</a>
                                 </div>
                             </div>
                         </div><!-- end form-box -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                <div class="border-top mt-5"></div>
+                <div class="border-top mt-4"></div>
                 <div class="row align-items-center">
                     <div class="col-lg-7">
                         <div class="copy-right padding-top-30px">
@@ -637,44 +494,6 @@
 </div>
 <!-- end scroll top -->
 
-<!-- end modal-shared -->
-<div class="modal-popup">
-    <div class="modal fade" id="modalPopup" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title title" id="exampleModalLongTitle">Send Email to Customer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="la la-close"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="contact-form-action">
-                        <form method="post">
-                            <div class="input-box">
-                                <div class="form-group">
-                                    <i class="la la-book form-icon"></i>
-                                    <input type="text" class="form-control" placeholder="Subject">
-                                </div>
-                            </div>
-                            <div class="input-box">
-                                <div class="form-group mb-0">
-                                    <i class="la la-pencil form-icon"></i>
-                                    <textarea class="message-control form-control" name="message" placeholder="Write message here..."></textarea>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-                <div class="modal-footer border-top-0 pt-0">
-                    <button type="button" class="btn font-weight-bold font-size-15 color-text-2 mr-2" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="theme-btn theme-btn-small">Send Email</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
-
 <!-- Template JS Files -->
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -691,5 +510,5 @@
 <script src="js/main.js"></script>
 </body>
 
-<!-- Mirrored from Psyber Inc.com/demos/trizen/html/admin-dashboard-orders-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:11:00 GMT -->
+<!-- Mirrored from Psyber Inc.com/demos/trizen/html/user-dashboard-profile.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Mar 2024 15:10:29 GMT -->
 </html>

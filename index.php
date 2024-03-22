@@ -29,7 +29,7 @@ exit();
   <meta name="author" content="Psyber Inc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Trizen - Travel Booking HTML Template</title>
+  <title>Malvin Cabs - Rent a Car</title>
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.png" />
 
@@ -160,7 +160,7 @@ exit();
             <div class="menu-wrapper">
               <a href="#" class="down-button"><i class="la la-angle-down"></i></a>
               <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                <a href="index.php"><img src="images/logo.png" alt="logo" /></a>
                 <div class="menu-toggler">
                   <i class="la la-bars"></i>
                   <i class="la la-times"></i>
@@ -1437,19 +1437,22 @@ exit();
         <div class="col-lg-3 responsive-column">
           <div class="footer-item">
             <div class="footer-logo padding-bottom-30px">
-              <a href="index.html" class="foot__logo"><img src="images/logo.png" alt="logo" /></a>
+              <a href="index.php" class="foot__logo"><img src="images/logo.png" alt="logo" /></a>
             </div>
             <!-- end logo -->
             <p class="footer__desc">
-              Morbi convallis bibendum urna ut viverra. Maecenas consequat
+            Malvin Cabs Rent a Car The cars and services we provide say a lot about us.
             </p>
             <ul class="list-items pt-3">
               <li>
-                3015 Grand Ave, Coconut Grove,<br />
-                Cerrick Way, FL 12345
+              Malvin Rent A Car Plot No: 2,<br/>
+              Ghandhi Nagar, BKC Behind MIG Cricket Club, <br/>
+              Opp Building No: 41, <br/>
+              Mhada Bandra Service Road, <br/>
+              BKC Bandra East Mumbai: 400051
               </li>
-              <li>+123-456-789</li>
-              <li><a href="#">trizen@yourwebsite.com</a></li>
+              <li>+91 98198 49131</li>
+              <li><a href="#">info@malvincabs.com</a></li>
             </ul>
           </div>
           <!-- end footer-item -->
