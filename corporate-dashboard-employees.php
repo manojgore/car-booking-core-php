@@ -255,7 +255,7 @@ if (!isset($_SESSION['corporate_id'])) {
                     </div><!-- end notification-item -->
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 </div><!-- end user-canvas-container -->
 <!-- ================================
