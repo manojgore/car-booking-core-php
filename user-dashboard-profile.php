@@ -105,7 +105,7 @@ $conn->close();
                                     <div class="icon-element flex-shrink-0 mr-3 ml-0"><i class="la la-bell"></i></div>
                                     <div class="msg-content w-100">
                                         <h3 class="title pb-1">Your request has been sent</h3>
-                                        <p class="msg-text">2 min ago</p>
+                                        <p class="msg-text">2 min ago</p> 
                                     </div>
                                 </div><!-- end msg-body -->
                             </a>
