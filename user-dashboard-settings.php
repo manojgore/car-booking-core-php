@@ -124,7 +124,7 @@ if (isset($_POST['save_changes'])) {
                                     <div class="msg-content w-100">
                                         <h3 class="title pb-1">Your account has been created</h3>
                                         <p class="msg-text">1 day ago</p>
-                                    </div>
+                                    </div> 
                                 </div><!-- end msg-body -->
                             </a>
                             <a href="#" class="list-group-item list-group-item-action">
