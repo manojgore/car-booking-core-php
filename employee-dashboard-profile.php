@@ -203,7 +203,7 @@ $conn->close();
                                         <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>
                                     </div>
                                 </div><!-- end msg-body -->
-                            </a>
+                            </a> 
                         </div>
                     </div><!-- end notification-item -->
                 </div>
